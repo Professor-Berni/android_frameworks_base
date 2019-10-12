@@ -228,3 +228,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/notifications/material/ogg/Salacia.ogg:system/media/audio/notifications/Salacia.ogg \
     $(LOCAL_PATH)/notifications/material/ogg/Tethys.ogg:system/media/audio/notifications/Tethys.ogg \
     $(LOCAL_PATH)/notifications/material/ogg/Titan.ogg:system/media/audio/notifications/Titan.ogg
+
+# Added by Bernhard Thoben (to fit my needs) - 04.03.2019
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/notifications/Ascensions.ogg:system/media/audio/notifications/Ascensions.ogg \
+    $(LOCAL_PATH)/notifications/Birds_of_Paradise.ogg:system/media/audio/notifications/Birds_of_Paradise.ogg \
+    $(LOCAL_PATH)/notifications/Climb.ogg:system/media/audio/notifications/Climb.ogg \
+    $(LOCAL_PATH)/notifications/Climb_up.ogg:system/media/audio/notifications/Climb_up.ogg \
+    $(LOCAL_PATH)/notifications/Notification.ogg:system/media/audio/notifications/Notification.ogg \
+    $(LOCAL_PATH)/notifications/Ray.ogg:system/media/audio/notifications/Ray.ogg \
+    $(LOCAL_PATH)/notifications/Whisper.ogg:system/media/audio/notifications/Whisper.ogg \
+    $(LOCAL_PATH)/ringtones/Breeze.ogg:system/media/audio/ringtones/Breeze.ogg \
+    $(LOCAL_PATH)/ringtones/CyanTone.ogg:system/media/audio/ringtones/CyanTone.ogg
