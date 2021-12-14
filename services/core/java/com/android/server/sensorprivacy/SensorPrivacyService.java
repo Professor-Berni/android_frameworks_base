@@ -1213,7 +1213,7 @@ public final class SensorPrivacyService extends SystemService {
 
             String message = "Observing sensor privacy changes requires the following permission: "
                     + android.Manifest.permission.OBSERVE_SENSOR_PRIVACY;
-            throw new SecurityException(message);
+            Log.e(TAG, "IGNORED: Exception: ", new SecurityException(message));
         }
 
         /**
