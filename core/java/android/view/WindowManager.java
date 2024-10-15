@@ -2498,6 +2498,12 @@ public interface WindowManager extends ViewManager {
         public static final int PRIVATE_FLAG_TRUSTED_OVERLAY = 0x20000000;
 
         /**
+         * Window flag: Overrides default power key behavior
+         * @hide
+         */
+        public static final int PRIVATE_FLAG_PREVENT_POWER_KEY = 0x30000000;
+
+        /**
          * Flag to indicate that the parent frame of a window should be inset by IME.
          * @hide
          */
