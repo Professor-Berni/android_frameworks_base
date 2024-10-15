@@ -71,10 +71,10 @@ public class FingerprintUpdateActiveUserClient extends HalClientMonitor<IBiometr
             return;
         }
 
-        int firstSdkInt = Build.VERSION.DEVICE_INITIAL_SDK_INT;
+        int firstSdkInt = 22;
         if (firstSdkInt < Build.VERSION_CODES.BASE) {
             Slog.e(TAG, "First SDK version " + firstSdkInt + " is invalid; must be " +
-                    "at least VERSION_CODES.BASE");
+                    "at least VERSION_CODES.BASE (" + Build.VERSION_CODES.BASE + ")");
         }
         File baseDir;
         if (firstSdkInt <= Build.VERSION_CODES.O_MR1) {
