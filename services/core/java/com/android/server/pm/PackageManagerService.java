@@ -3404,6 +3404,18 @@ public class PackageManagerService extends IPackageManager.Stub
 
                 generateFakeSignature(p).ifPresent(fakeSignature -> {
                     packageInfo.signatures = new Signature[]{fakeSignature};
+                    try {
+                        packageInfo.signingInfo = new SigningInfo(
+                                new SigningDetails(
+                                        packageInfo.signatures,
+                                        SigningDetails.SignatureSchemeVersion.SIGNING_BLOCK_V3,
+                                        PackageParser.toSigningKeys(packageInfo.signatures),
+                                        null
+                                )
+                        );
+                    } catch (CertificateException e) {
+                        Slog.e(TAG, "Caught an exception when creating signing keys: ", e);
+                    }
                 });
 
                 return packageInfo;
@@ -16447,6 +16459,9 @@ public class PackageManagerService extends IPackageManager.Stub
                     (installFlags & PackageManager.INSTALL_INSTANT_APP) != 0;
             final boolean fullApp =
                     (installFlags & PackageManager.INSTALL_FULL_APP) != 0;
+            final boolean isPackageDeviceAdmin = isPackageDeviceAdmin(packageName, userId);
+            final boolean isProtectedPackage = mProtectedPackages != null
+                    && mProtectedPackages.isPackageStateProtected(userId, packageName);
 
             // writer
             synchronized (mLock) {
@@ -16454,7 +16469,8 @@ public class PackageManagerService extends IPackageManager.Stub
                 if (pkgSetting == null) {
                     return PackageManager.INSTALL_FAILED_INVALID_URI;
                 }
-                if (instantApp && (pkgSetting.isSystem() || isUpdatedSystemApp(pkgSetting))) {
+                if (instantApp && (pkgSetting.isSystem() || isUpdatedSystemApp(pkgSetting)
+                        || isPackageDeviceAdmin || isProtectedPackage)) {
                     return PackageManager.INSTALL_FAILED_INVALID_URI;
                 }
                 if (!canViewInstantApps(callingUid, UserHandle.getUserId(callingUid))) {
